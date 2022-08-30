@@ -7,9 +7,6 @@ executors:
       IMAGE_NAME: tatchumnono/example_ci
     docker:
       - image: circleci/buildpack-deps:stretch
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
 jobs:
   publishLatestToHub:
     executor: docker-publisher

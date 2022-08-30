@@ -6,7 +6,7 @@ executors:
     environment:
       IMAGE_NAME: tatchumnono/example_ci
     docker:
-      - image: circleci/buildpack-deps:stretch
+      - image: dockerhub/node:latest
 jobs:
   publishLatestToHub:
     executor: docker-publisher
@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
-            echo “$DOCKERHUB_PASS” | docker login -u “$DOCKERHUB_USERNAME” -p “$DOCKERHUB_PASSWORD” --password-stdin
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker build -t $IMAGE_NAME .
             docker push $IMAGE_NAME:latest
 workflows:

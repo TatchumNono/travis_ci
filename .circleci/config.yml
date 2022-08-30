@@ -9,7 +9,7 @@ executors:
       - image: circleci/node:latest
         auth:
           username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASS
+          password: $DOCKERHUB_PASSWORD
 jobs:
   publishLatestToHub:
     executor: docker-publisher
@@ -19,7 +19,7 @@ jobs:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
-            echo “$DOCKERHUB_PASS” | docker login -u “$DOCKERHUB_USERNAME” -p “$DOCKERHUB_PASS” --password-stdin
+            echo “$DOCKERHUB_PASS” | docker login -u “$DOCKERHUB_USERNAME” -p “$DOCKERHUB_PASSWORD” --password-stdin
             docker build -t $IMAGE_NAME .
             docker push $IMAGE_NAME:latest
 workflows:

@@ -9,7 +9,7 @@ executors:
       - image: circleci/node:latest
         auth:
           username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+          password: $DOCKERHUB_PASS
 jobs:
   publishLatestToHub:
     executor: docker-publisher

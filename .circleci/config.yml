@@ -1,0 +1,16 @@
+# CircleCI configuration file
+version: 2.1
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context:
+            - build-env-vars
+            - docker-hub-creds
+jobs:
+  build:
+    docker:
+      - image: tatchumnono/example_ci
+        auth:
+          username: $DOCKERHUB_USERNAME # can specify string literal values
+          password: $DOCKERHUB_PASSWORD # or project environment variable reference
